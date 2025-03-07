@@ -28,9 +28,9 @@ export default defineConfig({
                         // Open the link in the Quest 2 browser using ADB
                         exec(`adb shell am start -a android.intent.action.VIEW -d "${url}"`, (err) => {
                             if (err) {
-                                console.error("Failed to open URL on Quest 2:", err);
+                                console.warn("Failed to open URL on Quest 2 (is it connected?)");
                             } else {
-                                console.log("Opened URL on Quest 2:", url);
+                                console.log("Opened URL on Quest 2");
                             }
                         });
                     } catch (error) {

@@ -1,4 +1,7 @@
 import 'aframe'
+import {BBB} from 'aframe-vr-locomotion';
+
+BBB();
 
 document.querySelector('#app').innerHTML = `
     <a-scene>
