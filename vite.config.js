@@ -1,14 +1,15 @@
 import { defineConfig } from "vite";
 import ngrok from "ngrok";
 import { exec } from "child_process";
+import commonjs from "vite-plugin-commonjs";
 
 export default defineConfig({
     server: {
-        port: 3000, // Ensure consistent port
+        port: 3000,
         strictPort: true,
-        host: "0.0.0.0", // Allows external access (like from Quest 2)
-        allowedHosts: [".ngrok-free.app", "localhost"], // Allows any ngrok subdomain
-        cors: true, // Ensures proper cross-origin handling
+        host: "0.0.0.0",
+        allowedHosts: [".ngrok-free.app", "localhost"],
+        cors: true,
     },
     plugins: [
         {
@@ -39,5 +40,14 @@ export default defineConfig({
                 });
             },
         },
+        commonjs(),
     ],
+    optimizeDeps: {
+        include: ["aframe-extras"],
+    },
+    build: {
+        commonjsOptions: {
+            include: [/node_modules/, /aframe-extras/]
+        }
+    }
 });
